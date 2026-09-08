@@ -1,11 +1,13 @@
 <!-- mova:engine -->
-# The shelf hides behind its own gate, and nothing ever tells the learner it is there
+# Nothing ever tells the learner the shelf is there
 
-**Owed to limba.** Found porting PORT-028 into mova 0.17.0. Two things, one small and one new:
-the shelf section skips the gate limba built for exactly this case, and the feature has no way
-of being discovered by anyone who has not already used it.
+**Owed to limba.** Found porting PORT-028 into mova 0.17.0.
 
-## 1. The shelf renders through an inline ternary, not through `when()`
+> **Half paid, 2026-09-08.** limba took part 1 as **PORT-030** — the shelf now renders through
+> `when()`, and its hub prints `skipped()` for the first time. Part 2, the offer, is still owed
+> and is what this file now waits on. Part 1 is kept below for the record; do not re-port it.
+
+## 1. The shelf renders through an inline ternary, not through `when()` — TAKEN (PORT-030)
 
 `scripts/hub.mjs` renders the shelf as `${shelf.length ? `…` : ""}`. `scripts/sources.mjs:545`
 already exports `when()` for this shape, and its own docstring gives the reason: a section that
