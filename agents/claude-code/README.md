@@ -30,6 +30,13 @@ Also copy [launch.json](launch.json) to the instance's `.claude/launch.json` —
 preview server (`name: "visuals"`, port 8791) that lets Claude Code preview generated pages
 from `work/visuals/`.
 
+Also copy [settings.json](settings.json) to the instance's `.claude/settings.json`. If the
+instance already has one, merge its `permissions.ask` entries into the existing list. It makes
+Claude Code ask before `git add -A`, `git commit -a`, `stash`, `reset`, `restore`,
+`checkout --`, and `clean`. AGENTS.md states the rule in prose for every agent; this file is
+what holds it for Claude Code, because a shared tree with sibling retros is exactly where a
+sweeping `git add` or a `stash` loses someone else's work.
+
 ## Which verbs are active
 
 A playbook is active when its frontmatter `scenarios:` is `all` or includes the profile's

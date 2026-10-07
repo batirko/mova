@@ -3,8 +3,8 @@
 
 > Operational guide for the AI agent running this workspace — canonical for every agent
 > (Claude Code, opencode, Codex, Antigravity, or anything that reads markdown).
-> `CLAUDE.md` points here. Conventions in this repo aren't etiquette; they're enforced by
-> `npm test`.
+> `CLAUDE.md` imports this file. Conventions in this repo aren't etiquette; they're enforced
+> by `npm test`.
 
 ## Which mode are you in?
 
@@ -91,25 +91,13 @@ them. Playbooks are **verbs** and stay thin; shared rules live once, in `docs/me
 One learner, sequential sessions: work directly on `main`, commit at every close-out
 (`SES-NNN: <one-line summary>`), **naming the paths the session wrote** — never `git add -A`.
 `playbooks/retro.md` is the one command safe to run in parallel; its concurrency rules bind
-any session sharing the tree. Never discard uncommitted work you did not create.
+any session sharing the tree. Never discard uncommitted work you did not create: a dirty
+tree you didn't dirty is a sibling's retro in flight. In a Claude Code instance,
+`.claude/settings.json` makes the agent ask before `git add -A`, `stash`, `reset`, and similar.
 
-## Status
+## Untested paths
 
-Everything the verb table names exists and is CI-green: the engine (mechanics, scripts,
-contract tests, the visual system), seven language packs, all twelve playbooks,
-and the setup system. Three instances have been generated from this template and each
-passed its own contract suite.
-
-**Exercised once:** one study session has run to completion — a Turkish instance under
-ChatGPT's Codex agent on 2026-08-24, driven from this file's verb table: placement, a repair
-lesson, close-out. It found the marking gap 0.19.0 closes
-([docs/mechanics/why/verification.md](docs/mechanics/why/verification.md)) and a close-out
-failure on the `say` voice (fixed in 0.18.1), and it lost the learner. No drill, review or tutor pack has run.
-Adapters have only been generated for Claude Code. Seven language packs ship, but only
-Romanian was extracted from a measured learner — Spanish, French, German, Italian, Portuguese
-and Greek were built from references and have taught nobody, and each says so in its own
-notes; Turkish has none, so that instance built its own at setup and runs on the null
-adapter. The update, sync and feedback paths are written but unrun.
-Treat those as untested, not as broken — and **report what you find**: an engine-shaped
-finding goes back to the template through [playbooks/feedback.md](playbooks/feedback.md),
-not into a local file nobody upstream reads.
+Some paths have never run: drills, reviews, tutor packs, adapters other than Claude Code, and
+the update, sync and feedback paths ([README.md](README.md) → Status has the detail). Treat a
+failure there as untested, not broken, and report engine-shaped findings through
+[playbooks/feedback.md](playbooks/feedback.md), not into a local file nobody upstream reads.

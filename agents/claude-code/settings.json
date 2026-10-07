@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "ask": [
+      "Bash(git add -A:*)",
+      "Bash(git add --all:*)",
+      "Bash(git add .)",
+      "Bash(git commit -a:*)",
+      "Bash(git commit --all:*)",
+      "Bash(git stash:*)",
+      "Bash(git reset:*)",
+      "Bash(git restore:*)",
+      "Bash(git checkout --:*)",
+      "Bash(git checkout .)",
+      "Bash(git clean:*)"
+    ]
+  }
+}

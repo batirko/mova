@@ -171,6 +171,29 @@ happened, or a measurement; `playbooks/` holds one flow per verb. `npm test` is 
 contract suite, and it fails when the workspace's own records stop being trustworthy.
 [CHANGELOG.md](CHANGELOG.md) records what changed and when.
 
+## Status
+
+Everything the verb table in [AGENTS.md](AGENTS.md) names exists and is CI-green: the engine
+(mechanics, scripts, contract tests, the visual system), seven language packs, all twelve
+playbooks, and the setup system. Three instances have been generated from this template, and
+each passed its own contract suite.
+
+One study session has run to completion: a Turkish instance under ChatGPT's Codex agent on
+2026-08-24, driven from the AGENTS.md verb table — placement, a repair lesson, close-out. It
+found the marking gap 0.19.0 closes
+([docs/mechanics/why/verification.md](docs/mechanics/why/verification.md)) and a close-out
+failure on the `say` voice (fixed in 0.18.1), and it lost the learner.
+
+Not yet exercised:
+
+- No drill, review, or tutor pack has run.
+- Adapters have only been generated for Claude Code.
+- Only the Romanian pack was extracted from a measured learner. Spanish, French, German,
+  Italian, Portuguese and Greek were built from references and have taught nobody; each says
+  so in its own notes. Turkish has no pack, so that instance built its own at setup and runs
+  on the null adapter.
+- The update, sync and feedback paths are written but unrun.
+
 ## For maintainers
 
 `upstream/map.md` is the porting contract from the workspace this engine was extracted

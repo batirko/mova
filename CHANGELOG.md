@@ -4,6 +4,35 @@ Every entry carries an `instance-impact:` line — what a personalized copy of t
 must do about the change: `none` (template-repo internals), `engine files auto-update`
 (the instance `/update` playbook handles it), or a named regeneration step.
 
+## 0.20.0 — 2026-10-07
+
+Claude Code now reads the workspace's operational guide in every session. Before this, an
+instance's CLAUDE.md asked the agent in words to read AGENTS.md, and Claude Code doesn't
+load AGENTS.md by itself when a CLAUDE.md exists. The guide reached a session only when the
+agent chose to open it. Claude Code also asks before git commands that could sweep up or
+discard another session's work.
+
+instance-impact: **engine files auto-update; then two steps if your agent is Claude Code.**
+(1) Replace `CLAUDE.md` with the template's two lines. If you wrote your own content into it,
+keep that content and put `@AGENTS.md` on its own line at the top instead. `/update` can't do
+this silently: your copy predates the engine marker, so no old hash exists to compare against.
+(2) Copy `agents/claude-code/settings.json` to `.claude/settings.json`, or merge its
+`permissions.ask` entries into the one you have. Other agents: nothing to do.
+
+- **CLAUDE.md imports AGENTS.md.** It's two lines: the `mova:engine` marker and `@AGENTS.md`.
+  The marker puts CLAUDE.md in the manifest, so future fixes reach instances through
+  `/update`.
+- **The Claude Code adapter ships `ask` permissions** for `git add -A`, `git commit -a`,
+  `stash`, `reset`, `restore`, `checkout --`, and `clean`. AGENTS.md keeps the rule in prose
+  for every agent, now with its reason: a dirty tree you didn't dirty is a sibling's retro in
+  flight.
+- **AGENTS.md lost its Status section.** It was maintainer history loading in every learner's
+  session, and older instance copies already contradicted it. It moved to README → Status.
+  AGENTS.md keeps one short section naming the paths that have never run, so a failure there
+  reads as untested rather than broken.
+- **From limba's PORT-033**, which rewrote limba's instruction file for current models. The
+  lock doesn't move: PORT-030 to PORT-032 are still unsynced.
+
 ## 0.19.0 — 2026-09-08
 
 When a mark says you were wrong, the sheet now says whether anything checked that mark or
